@@ -24,7 +24,7 @@ public class FlightNumber {
     @Column(name = "icao_number")
     private String icaoNumber;
 
-    @Column(name = "number")
+    @Column(name = "flight_number")
     private String number;
 
 
