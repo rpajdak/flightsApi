@@ -25,4 +25,5 @@ public class FlightNumber {
 
     public FlightNumber() {
     }
+
 }
