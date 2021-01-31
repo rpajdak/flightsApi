@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "airline")
 @NoArgsConstructor
+
 public class Airline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -1,5 +1,6 @@
 package com.codeccol.flights;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "aircraft")
 @NoArgsConstructor
+@Builder
 public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
