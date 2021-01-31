@@ -14,6 +14,7 @@ public class Airport {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "id")
     private Long id;
     @Column(name = "iata_code")
     private String iataCode;
