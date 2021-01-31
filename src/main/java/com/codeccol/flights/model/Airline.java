@@ -1,4 +1,4 @@
-package com.codeccol.flights;
+package com.codeccol.flights.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +20,10 @@ public class Airline {
     private String iataCode;
     @Column(name = "icao_code")
     private String icaoCode;
+
+    public Airline() {
+
+    }
 }
 
 

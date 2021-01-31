@@ -1,4 +1,4 @@
-package com.codeccol.flights;
+package com.codeccol.flights.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -23,4 +23,7 @@ public class Aircraft {
     @Column(name = "reg_number")
     private String regNumber;
 
+    public Aircraft() {
+
+    }
 }
