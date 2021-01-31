@@ -1,17 +1,16 @@
 package com.codeccol.flights;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
-@Table(name = "airline")
-@NoArgsConstructor
-
+@Entity
+@Table(name = "airlines")
+@Builder
 public class Airline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -22,3 +21,5 @@ public class Airline {
     @Column(name = "icao_code")
     private String icaoCode;
 }
+
+
