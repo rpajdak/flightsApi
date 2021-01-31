@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "airlines")
-@Builder
 public class Airline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

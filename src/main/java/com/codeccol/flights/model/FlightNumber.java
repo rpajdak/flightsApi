@@ -1,6 +1,5 @@
 package com.codeccol.flights.model;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +7,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "flightNumbers")
 public class FlightNumber {

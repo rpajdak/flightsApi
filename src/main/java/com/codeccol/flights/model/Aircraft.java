@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Builder
 @Table(name = "aircrafts")
 public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

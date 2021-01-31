@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Builder
 @Entity
 @Table(name = "airports")
 public class Airport {
