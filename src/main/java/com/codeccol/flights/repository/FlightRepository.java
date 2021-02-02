@@ -14,7 +14,4 @@ public interface FlightRepository extends JpaRepository<FlightNumber, Long> {
             "WHERE flight.iataNumber = :iataNumber " +
             "OR flight.icaoNumber= :icaoNumber")
     Optional<FlightNumber> getFlightNumberByIataAndIcao(String iataNumber, String icaoNumber);
-
-
 }
-e
