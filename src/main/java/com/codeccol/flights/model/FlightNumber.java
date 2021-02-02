@@ -1,24 +1,26 @@
 package com.codeccol.flights.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name="flight_number")
+@ToString
+@EqualsAndHashCode
+@Table(name = "flight_number")
 public class FlightNumber {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "iata_number")
+    @Column(name = "iata_number", unique = true)
     private String iataNumber;
 
     @Column(name = "icao_number")
@@ -33,5 +35,8 @@ public class FlightNumber {
         this.iataNumber = iataNumber;
         this.icaoNumber = icaoNumber;
         this.number = number;
+    }
+
+    public FlightNumber() {
     }
 }

@@ -1,15 +1,18 @@
 package com.codeccol.flights.model;
 
-import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "airlines")
+@ToString
+@EqualsAndHashCode
+@Table(name = "airline")
 public class Airline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
