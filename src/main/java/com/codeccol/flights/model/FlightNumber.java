@@ -1,9 +1,6 @@
 package com.codeccol.flights.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -30,8 +27,7 @@ public class FlightNumber {
     private String number;
 
 
-    public FlightNumber(long id, String iataNumber, String icaoNumber, String number) {
-        this.id = id;
+    public FlightNumber(String iataNumber, String icaoNumber, String number) {
         this.iataNumber = iataNumber;
         this.icaoNumber = icaoNumber;
         this.number = number;
