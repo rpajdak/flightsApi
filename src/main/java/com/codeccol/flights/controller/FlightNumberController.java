@@ -22,7 +22,7 @@ public class FlightNumberController {
 
     @GetMapping(value = "/airport/arrival/{city}", produces = MediaType.APPLICATION_JSON_VALUE)
     public FlightInfoDTO[] getArrivalFlightByCity(@PathVariable String city) throws IOException {
-TO
+
         return flightNumberService.getArrivalFlightByCity(city);
     }
 
