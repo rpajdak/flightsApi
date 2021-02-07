@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FlightRepository extends JpaRepository<FlightNumber, Long> {
+public interface FlightNumberRepository extends JpaRepository<FlightNumber, Long> {
     @Query("SELECT flight " +
             "from FlightNumber flight " +
             "WHERE flight.iataNumber = :iataNumber " +
