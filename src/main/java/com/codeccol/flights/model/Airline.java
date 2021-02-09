@@ -26,6 +26,17 @@ public class Airline {
     public Airline() {
 
     }
+
+    public Airline(Long id, String iataCode, String icaoCode) {
+        this.id = id;
+        this.iataCode = iataCode;
+        this.icaoCode = icaoCode;
+    }
+
+    public Airline(String iataCode, String icaoCode) {
+        this.iataCode = iataCode;
+        this.icaoCode = icaoCode;
+    }
 }
 
 
