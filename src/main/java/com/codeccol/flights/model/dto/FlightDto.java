@@ -2,7 +2,7 @@ package com.codeccol.flights.model.dto;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @Setter
@@ -16,6 +16,6 @@ public class FlightDto {
     String departure;
     String arrival;
     String flightNumber;
-    Date flightDate;
+    LocalDate flightDate;
 
 }
