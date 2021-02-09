@@ -18,7 +18,7 @@ public class Airline {
     @Id
     @Column(name = "id")
     private Long id;
-    @Column(name = "iata_code")
+    @Column(name = "iata_code", unique = true)
     private String iataCode;
     @Column(name = "icao_code")
     private String icaoCode;
