@@ -13,10 +13,9 @@ public class FlightConverter {
     public static List<FlightDto> entityToDto(List<Flight> flights) {
         List<FlightDto> flightsDto = new ArrayList<>();
         for (Flight flight : flights) {
-            AircraftDto aircraftDto = new AircraftDto(flight.getAirline().getIataCode(),
-                    flight.getAirline().getIcaoCode(),
+            AircraftDto aircraftDto = new AircraftDto(flight.getAircraft().getIataCode(),
+                    flight.getAircraft().getIcaoCode(),
                     flight.getAircraft().getRegNumber());
-
             FlightDto flightDto = FlightDto
                     .builder()
                     .aircraft(aircraftDto)
