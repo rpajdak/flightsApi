@@ -1,6 +1,8 @@
 package com.codeccol.flights.service;
 
+import com.codeccol.flights.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,13 +26,17 @@ public class AviationEdgeClient {
                 .build();
     }
 
-    public String getAllCurrentA380Flights() throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(new URI(String.format(AVIATION_EDGE_BASE_URL, API_KEY, aircraftEndPoint, "a388")))
-                .GET()
-                .build();
-        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        return response.body();
+    public String getAllCurrentByType(String type) throws BadRequestException {
+        try {
+            HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .uri(new URI(String.format(AVIATION_EDGE_BASE_URL, API_KEY, aircraftEndPoint, type)))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+        } catch (URISyntaxException | IOException | InterruptedException e) {
+            throw new BadRequestException("");
+        }
     }
 
 }
