@@ -25,15 +25,22 @@ public class FlightController {
         return flightService.getAllA380Flights();
     }
 
+    @GetMapping("/current/a380s")
+    @ResponseStatus(OK)
+    public List<FlightDto> getAllCurrentA380Flights() {
+        return flightService.getAllCurrentA380Flights();
+    }
+
+
     @ResponseStatus(OK)
     @GetMapping(value = "/type/{type}")
     public List<FlightDto> getFlightsByType(@PathVariable String type) throws BadAircraftTypeException {
-        return flightService.getFlightsByAircraftType(type);
+        return flightService.getCurrentFlightsByType(type);
     }
 
     @GetMapping("/test")
     @ResponseStatus(OK)
     public List<FlightDto> test() {
-        return flightService.test();
+        return flightService.getAllCurrentA380Flights();
     }
 }
