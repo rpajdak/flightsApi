@@ -18,6 +18,7 @@ public class FlightConverter {
                     flight.getAircraft().getRegNumber());
             FlightDto flightDto = FlightDto
                     .builder()
+                    .flightDate(flight.getDate())
                     .aircraft(aircraftDto)
                     .airline(flight.getAirline().getIcaoCode())
                     .departure(flight.getDeparture().getIataCode())
