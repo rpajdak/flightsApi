@@ -19,7 +19,7 @@ public class Airport {
     @Id
     @Column(name = "id")
     private Long id;
-    @Column(name = "iata_code")
+    @Column(name = "iata_code", unique = true)
     private String iataCode;
 
     @Column(name = "icao_code")
@@ -27,5 +27,10 @@ public class Airport {
 
 
     public Airport() {
+    }
+
+    public Airport(String iataCode, String icaoCode) {
+        this.iataCode = iataCode;
+        this.icaoCode = icaoCode;
     }
 }

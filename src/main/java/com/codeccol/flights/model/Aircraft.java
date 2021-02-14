@@ -22,10 +22,16 @@ public class Aircraft {
     private String iataCode;
     @Column(name = "icao_code")
     private String icaoCode;
-    @Column(name = "reg_number")
+    @Column(name = "reg_number", unique = true)
     private String regNumber;
 
     public Aircraft() {
 
+    }
+
+    public Aircraft(String iataCode, String icaoCode, String regNumber) {
+        this.iataCode = iataCode;
+        this.icaoCode = icaoCode;
+        this.regNumber = regNumber;
     }
 }

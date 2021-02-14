@@ -1,8 +1,8 @@
 package com.codeccol.flights.service;
 
-import com.codeccol.flights.model.dto.FlightInfoDTO;
 import com.codeccol.flights.model.FlightNumber;
-import com.codeccol.flights.repository.FlightRepository;
+import com.codeccol.flights.model.dto.FlightInfoDTO;
+import com.codeccol.flights.repository.FlightNumberRepository;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,10 @@ import java.util.Scanner;
 @Service
 public class FlightNumberService {
 
-    FlightRepository flightRepository;
-//        URL url = new URL("https://aviation-edge.com/v2/public/flights?key=ae64ea-f17efc&limit=30000&aircraftIcao=a388");
+    FlightNumberRepository flightNumberRepository;
 
-    public FlightNumberService(FlightRepository flightRepository) {
-        this.flightRepository = flightRepository;
+    public FlightNumberService(FlightNumberRepository flightNumberRepository) {
+        this.flightNumberRepository = flightNumberRepository;
     }
 
 
@@ -37,8 +36,8 @@ public class FlightNumberService {
             FlightNumber flightNumber = new FlightNumber(flight.getFlight().getIataNumber(),
                     flight.getFlight().getIcaoNumber(),
                     flight.getFlight().getNumber());
-            if (!flightRepository.getFlightNumberByIataAndIcao(flightNumber.getIataNumber(), flightNumber.getIcaoNumber()).isPresent()) {
-                flightRepository.save(flightNumber);
+            if (flightNumberRepository.getFlightNumberByIataAndIcao(flightNumber.getIataNumber(), flightNumber.getIcaoNumber()).isEmpty()) {
+                saveFlight(flightNumber);
             }
         }
 
@@ -51,9 +50,9 @@ public class FlightNumberService {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
-        int responsecode = conn.getResponseCode();
-        if (responsecode != 200) {
-            throw new RuntimeException("HttpResponseCode: " + responsecode);
+        int responseCode = conn.getResponseCode();
+        if (responseCode != 200) {
+            throw new RuntimeException("HttpResponseCode: " + responseCode);
         } else {
             Scanner scanner = new Scanner(url.openStream());
             while (scanner.hasNext()) {
@@ -73,11 +72,10 @@ public class FlightNumberService {
     private boolean checkIfFlightIsDataBase(FlightInfoDTO FlightInfoDTO) {
         String icaoNumber = FlightInfoDTO.getFlight().getIcaoNumber();
         String iataNumber = FlightInfoDTO.getFlight().getIataNumber();
-
-        return flightRepository.getFlightNumberByIataAndIcao(iataNumber, icaoNumber).isEmpty();
+        return flightNumberRepository.getFlightNumberByIataAndIcao(iataNumber, icaoNumber).isEmpty();
     }
 
     private void saveFlight(FlightNumber FlightNumber) {
-        flightRepository.save(FlightNumber);
+        flightNumberRepository.save(FlightNumber);
     }
 }
