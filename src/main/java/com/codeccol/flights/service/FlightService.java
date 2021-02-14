@@ -12,10 +12,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
+
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     FlightRepository flightRepository;
     AircraftRepository aircraftRepository;
@@ -53,15 +57,24 @@ public class FlightService {
     }
 
     private List<FlightDto> getFlightDtos(String type) {
+        Long start = System.currentTimeMillis();
         try {
             List<Flight> currentFlights = removeFlightsWithNullAirports(retrieveFlightsFromJson(aviationEdgeClient.getAllCurrentByType(type)));
             for (Flight currentFlight : currentFlights) {
-                tryToAddFlight(currentFlight);
+//                tryToAddFlight(currentFlight);
+                executorService.submit(() -> tryToAddFlight(currentFlight));
             }
+            Long end = System.currentTimeMillis();
+            System.out.println(end - start);
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
             return FlightConverter.entityToDto(currentFlights);
         } catch (BadRequestException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
