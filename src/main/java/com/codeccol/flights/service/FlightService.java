@@ -5,6 +5,7 @@ import com.codeccol.flights.exceptions.BadRequestException;
 import com.codeccol.flights.model.*;
 import com.codeccol.flights.model.dto.FlightDto;
 import com.codeccol.flights.repository.*;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
-
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    ThreadFactory namedThreadFactory =
+            new ThreadFactoryBuilder().setNameFormat("my-sad-thread-%d").build();
+    ExecutorService executorService = Executors.newFixedThreadPool(10, namedThreadFactory);
 
     FlightRepository flightRepository;
     AircraftRepository aircraftRepository;
@@ -57,19 +60,12 @@ public class FlightService {
     }
 
     private List<FlightDto> getFlightDtos(String type) {
-        Long start = System.currentTimeMillis();
+
         try {
             List<Flight> currentFlights = removeFlightsWithNullAirports(retrieveFlightsFromJson(aviationEdgeClient.getAllCurrentByType(type)));
             for (Flight currentFlight : currentFlights) {
-//                tryToAddFlight(currentFlight);
                 executorService.submit(() -> tryToAddFlight(currentFlight));
             }
-            Long end = System.currentTimeMillis();
-            System.out.println(end - start);
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
             return FlightConverter.entityToDto(currentFlights);
         } catch (BadRequestException e) {
             e.printStackTrace();
