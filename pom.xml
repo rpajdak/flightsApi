@@ -14,7 +14,7 @@
     <name>flightsApp</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -86,6 +86,14 @@
                     <processTypes>
                         <web>java -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
                     </processTypes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
 
