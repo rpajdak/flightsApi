@@ -15,6 +15,8 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>14</java.version>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
@@ -24,14 +26,6 @@
         </dependency>
 
         <dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.1</version>
-    <configuration>
-        <source>1.8</source>
-        <target>1.8</target>
-    </configuration>
-</plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -96,7 +90,7 @@
                     </processTypes>
                 </configuration>
             </plugin>
-           
+
         </plugins>
     </build>
 
