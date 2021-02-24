@@ -23,7 +23,15 @@
             <version>2.4.2</version>
         </dependency>
 
-        <dependency>
+        <dependency><plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.1</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+    </configuration>
+</plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -88,15 +96,7 @@
                     </processTypes>
                 </configuration>
             </plugin>
-                   <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
-            </plugin>
+           
         </plugins>
     </build>
 
