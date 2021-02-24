@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Build dupa') {
+        stage('Build') {
             steps {
                 sh "mvn clean compile"
             }
